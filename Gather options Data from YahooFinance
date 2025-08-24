@@ -1,0 +1,23 @@
+import yfinance as yf
+
+# make a Ticker/expiry dates for Tesla's stock.
+tsla = yf.Ticker("TSLA")
+
+#now lets list all available option expiry dates
+expiryDates = tsla.options
+print("Available expiry dates: ", expiryDates)
+
+#get put and call options data
+#pick an expiry date (e.g. the first one)
+
+expiry = expiryDates[0]
+
+#fetch options chain
+opt_chain = tsla.option_chain(expiry)
+
+calls = opt_chain.calls
+puts = opt_chain.puts
+
+#result
+print("Calls: ", calls.head())
+print("Puts: ", puts.head())
